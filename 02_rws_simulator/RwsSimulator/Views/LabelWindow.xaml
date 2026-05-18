@@ -1,0 +1,104 @@
+<Window x:Class="RwsSimulator.Views.LabelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="라벨 발행" Height="420" Width="380"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#F3F4F6">
+
+    <Border Margin="24" Background="White" CornerRadius="10" Padding="24">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.1"/>
+        </Border.Effect>
+        <StackPanel>
+            <!-- 헤더 -->
+            <Border Background="#1E3A5F" CornerRadius="6" Padding="16,10" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock Text="✔ 칭량 완료 라벨" FontSize="16" FontWeight="Bold"
+                               Foreground="White" HorizontalAlignment="Center"/>
+                    <TextBlock Text="WEIGHING COMPLETION LABEL"
+                               FontSize="10" Foreground="#93C5FD" HorizontalAlignment="Center"
+                               Margin="0,2,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- 라벨 내용 -->
+            <Border BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="6" Padding="16">
+                <StackPanel>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="작업 지시 번호" Foreground="#6B7280" FontSize="12"/>
+                        <TextBlock Grid.Column="1" x:Name="TxtOrderId" FontWeight="Bold" Foreground="#111827"/>
+                    </Grid>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="원료 바코드" Foreground="#6B7280" FontSize="12"/>
+                        <TextBlock Grid.Column="1" x:Name="TxtBarcode" FontFamily="Consolas" FontWeight="Bold" Foreground="#1D4ED8"/>
+                    </Grid>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="원료명" Foreground="#6B7280" FontSize="12"/>
+                        <TextBlock Grid.Column="1" x:Name="TxtMaterialName" FontWeight="SemiBold" Foreground="#111827" TextWrapping="Wrap"/>
+                    </Grid>
+                    <Separator Margin="0,6" Background="#E5E7EB"/>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="목표 중량" Foreground="#6B7280" FontSize="12"/>
+                        <TextBlock Grid.Column="1" x:Name="TxtTarget" FontWeight="Bold" Foreground="#111827"/>
+                    </Grid>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="실측 중량" Foreground="#6B7280" FontSize="12"/>
+                        <TextBlock Grid.Column="1" x:Name="TxtActual" FontSize="18" FontWeight="Bold" Foreground="#16A34A"/>
+                    </Grid>
+                    <Separator Margin="0,6" Background="#E5E7EB"/>
+                    <Grid Margin="0,0,0,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="작업자" Foreground="#6B7280" FontSize="12"/>
+                        <TextBlock Grid.Column="1" x:Name="TxtOperator" Foreground="#111827"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="발행 일시" Foreground="#6B7280" FontSize="12"/>
+                        <TextBlock Grid.Column="1" x:Name="TxtDate" Foreground="#111827" FontSize="11"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <Button Content="확인 (라벨 발행 완료)" Margin="0,16,0,0"
+                    Background="#16A34A" Foreground="White"
+                    FontWeight="Bold" FontSize="14" Height="42"
+                    BorderThickness="0" Cursor="Hand"
+                    Click="OnConfirmClick">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+    </Border>
+</Window>

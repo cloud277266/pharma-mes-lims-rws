@@ -1,0 +1,30 @@
+# Node.js
+node_modules/
+.next/
+.turbo/
+*.log
+npm-debug.log*
+
+# Environment variables (NEVER commit)
+.env
+.env.local
+.env.*.local
+
+# C# / .NET build outputs
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp

@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  MAKER
+  CHECKER
+  ADMIN
+}
+
+enum ResultStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  name      String
+  role      Role     @default(MAKER)
+  createdAt DateTime @default(now())
+
+  createdResults  TestResult[] @relation("CreatedBy")
+  approvedResults TestResult[] @relation("ApprovedBy")
+  auditLogs       AuditLog[]
+}
+
+model TestResult {
+  id           Int          @id @default(autoincrement())
+  sampleId     String
+  testName     String
+  value        Float
+  unit         String
+  status       ResultStatus @default(PENDING)
+  createdById  Int
+  approvedById Int?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  createdBy  User       @relation("CreatedBy", fields: [createdById], references: [id])
+  approvedBy User?      @relation("ApprovedBy", fields: [approvedById], references: [id])
+  auditLogs  AuditLog[]
+}
+
+model AuditLog {
+  id           Int        @id @default(autoincrement())
+  testResultId Int
+  action       String
+  oldValue     Json?
+  newValue     Json?
+  changeReason String
+  userId       Int
+  createdAt    DateTime   @default(now())
+
+  testResult TestResult @relation(fields: [testResultId], references: [id])
+  user       User       @relation(fields: [userId], references: [id])
+}
